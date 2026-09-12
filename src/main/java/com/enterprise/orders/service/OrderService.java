@@ -50,7 +50,7 @@ public class OrderService {
                         }
 
                         Stock stock = stockRepository
-                                        .findByProductId(product.getId())
+                                        .findByProductId(request.productId())
                                         .orElseThrow(() -> new BusinessException(
                                                         "Produto sem estoque: "
                                                                         + product.getName()));

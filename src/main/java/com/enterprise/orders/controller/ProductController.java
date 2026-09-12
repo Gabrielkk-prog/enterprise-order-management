@@ -1,6 +1,5 @@
 package com.enterprise.orders.controller;
 
-import com.enterprise.orders.dto.customer.CustomerRequest;
 import com.enterprise.orders.dto.product.ProductRequest;
 import com.enterprise.orders.dto.product.ProductResponse;
 import com.enterprise.orders.entity.Product;
