@@ -20,31 +20,21 @@ public class DataInitializer {
 
                 return args -> {
 
-                        Customer customer = new Customer(
-                                        "Gabriel Silva",
-                                        "gabriel@email.com",
-                                        "12345678900");
-
-                        customerRepository.save(customer);
-
-                        customerRepository
+                        Customer customer = customerRepository
                                         .findByEmail("gabriel@email.com")
-                                        .ifPresent(foundCustomer -> System.out.println(
-                                                        "Cliente encontrado: "
-                                                                        + foundCustomer.getName()));
+                                        .orElseGet(() -> customerRepository.save(new Customer(
+                                                        "Gabriel Silva",
+                                                        "gabriel@email.com",
+                                                        "12345678900")));
 
-                        Product product = new Product(
-                                        "Notebook Pro",
-                                        "Notebook para desenvolvimento",
-                                        new BigDecimal("4500.00"));
-
-                        productRepository.save(product);
-
-                        productRepository
-                                        .findByNameContainingIgnoreCase("notebook")
-                                        .forEach(foundProduct -> System.out.println(
-                                                        "Produto encontrado: "
-                                                                        + foundProduct.getName()));
+                        Product product = productRepository
+                                        .findByNameContainingIgnoreCase("Notebook Pro")
+                                        .stream()
+                                        .findFirst()
+                                        .orElseGet(() -> productRepository.save(new Product(
+                                                        "Notebook Pro",
+                                                        "Notebook para desenvolvimento",
+                                                        new BigDecimal("4500.00"))));
 
                         System.out.println("Cliente salvo: "
                                         + customer.getId());
