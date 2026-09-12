@@ -1,9 +1,13 @@
 package com.enterprise.orders.controller;
 
+import com.enterprise.orders.dto.customer.CustomerRequest;
 import com.enterprise.orders.dto.product.ProductRequest;
 import com.enterprise.orders.dto.product.ProductResponse;
 import com.enterprise.orders.entity.Product;
 import com.enterprise.orders.service.ProductService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +24,7 @@ public class ProductController {
 
         @PostMapping
         public ResponseEntity<ProductResponse> create(
-                        @RequestBody ProductRequest request) {
+                        @RequestBody @Valid ProductRequest request) {
 
                 Product product = new Product(
                                 request.name(),
