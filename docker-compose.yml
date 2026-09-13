@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: enterprise-orders-db
+    environment:
+      POSTGRES_DB: enterprise_orders
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Defina DB_PASSWORD no arquivo .env}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
